@@ -1,0 +1,236 @@
+:root {
+    --primary-one: hsl(0, 100%, 67%); 
+    --primary-two: hsl(39, 100%, 56%);
+    --primary-three: hsl(166, 100%, 37%);
+    --primary-four: hsl(234, 85%, 45%);
+
+    --background-gradient-one: hsl(252, 100%, 67%);
+    --background-gradient-two: hsl(241, 81%, 54%);
+
+    --circle-gradient-one: hsla(256, 72%, 46%, 1);
+    --circle-gradient-two: hsla(241, 72%, 46%, 0);
+
+    --text-main: hsl(224, 30%, 27%);
+    --text-secondary: hsl(0, 0%, 100%);
+    --text-tertiary: hsl(221, 100%, 96%);
+    --text-quaternary: hsl(241, 100%, 89%);
+}
+
+/* reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+p, section {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* end reset */
+
+body {
+    font-family: sans-serif; /*add custom font*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--text-secondary);
+    color: var(--text-main);
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, .1);
+    max-width: 36rem;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+h2, .circle .small {
+    color: var(--text-quaternary);
+}
+
+h2 {
+    font-size: 1em;
+}
+
+.circle .small {
+    font-size: 0.7em;
+    opacity: 0.8;
+}
+
+.right, .left {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1.8em;
+}
+
+.right {
+    align-items: stretch;
+    font-size: 0.7em;
+    padding: 2.2em;
+}
+
+.left {
+    align-items: center;
+    background: linear-gradient(var(--background-gradient-one), var(--background-gradient-two));
+    text-align: center;
+    border-radius: inherit;
+}
+
+.circle {
+    background: linear-gradient(var(--circle-gradient-one), var(--circle-gradient-two));
+    height: 8em;
+    width: 8em;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.large {
+    font-size: 3em;
+    font-weight: bold;
+    line-height: 1.05;
+}
+
+.large, button {
+    color: var(--text-secondary);
+}
+
+.text-wrapper .large {
+    font-size: 1.3em;
+    margin-bottom: 1em;
+}
+
+.text-wrapper .small{
+    font-size: 0.8em;
+    color: var(--text-quaternary);
+}
+
+section .summary {
+    display: flex;
+}
+
+section p {
+    color: var(--text-main);
+}
+
+button {
+    background-color: var(--text-main);
+    border: none;
+    padding: 1.2em 0;
+    border-radius: 26px;
+    margin-top: 2em;
+    font-size: 1.1em;
+}
+
+button:hover, button:focus {
+    background: linear-gradient(var(--background-gradient-one), var(--background-gradient-two));
+    cursor: pointer;
+}
+
+.summary, .summary-content {
+    display: flex;
+}
+
+.summary {
+    justify-content: space-between;
+    padding: 1em 0.8em;
+    border-radius: 8px;
+}
+
+.summary-content {
+    gap: 1em;
+}
+
+span {
+    font-weight: bold;
+}
+
+#reaction > .summary-content > p{
+    color: var(--primary-one);
+}
+
+#reaction {
+    background-color: hsla(0, 100%, 67%, 5%); 
+}
+
+#memory > .summary-content > p {
+    color: var(--primary-two);
+}
+
+#memory {
+    background-color: hsla(39, 100%, 56%, 5%);
+}
+
+#verbal > .summary-content > p {
+    color: var(--primary-three);
+}
+
+#verbal {
+    background-color: hsla(166, 100%, 37%, 5%);
+}
+
+#visual > .summary-content > p {
+    color: var(--primary-four);
+}
+
+#visual {
+    background-color: hsla(234, 85%, 45%, 5%);
+}
+
+.summary p {
+    color: hsla(224, 30%, 27%, 70%);
+}
+
+.summary p span {
+    color: var(--text-main);
+}
