@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Hanken Grotesk;
+    src: url(./assets/fonts/HankenGrotesk-VariableFont_wght.ttf);
+}
+
 :root {
     --primary-one: hsl(0, 100%, 67%); 
     --primary-two: hsl(39, 100%, 56%);
@@ -71,7 +76,7 @@ a:not([class]) {
 /* end reset */
 
 body {
-    font-family: sans-serif; /*add custom font*/
+    font-family: "Hanken Grotesk", sans-serif; /*add custom font*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,7 +84,7 @@ body {
     background-color: var(--text-secondary);
     color: var(--text-main);
     font-size: 18px;
-    letter-spacing: 1px;
+    font-weight: 500;
 }
 
 main {
@@ -95,8 +100,13 @@ h2, .circle .small {
     color: var(--text-quaternary);
 }
 
-h2 {
-    font-size: 1em;
+h1, h2 {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.circle .small {
+    font-weight: 500;
 }
 
 .circle .small {
@@ -107,14 +117,16 @@ h2 {
 .right, .left {
     display: flex;
     flex-direction: column;
-    gap: 1em;
-    padding: 1.8em;
 }
 
 .right {
     align-items: stretch;
-    font-size: 0.7em;
-    padding: 2.2em;
+    gap: 0.5em;
+    padding: 1.8em 2em;
+}
+
+.right p, button {
+    font-size: 0.8em;
 }
 
 .left {
@@ -122,12 +134,14 @@ h2 {
     background: linear-gradient(var(--background-gradient-one), var(--background-gradient-two));
     text-align: center;
     border-radius: inherit;
+    gap: 1.2em;
+    padding: 1.8em 2.8em;
 }
 
 .circle {
     background: linear-gradient(var(--circle-gradient-one), var(--circle-gradient-two));
-    height: 8em;
-    width: 8em;
+    height: 9em;
+    width: 9em;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -137,7 +151,7 @@ h2 {
 
 .large {
     font-size: 3em;
-    font-weight: bold;
+    font-weight: 800;
     line-height: 1.05;
 }
 
@@ -148,11 +162,13 @@ h2 {
 .text-wrapper .large {
     font-size: 1.3em;
     margin-bottom: 1em;
+    font-weight: 500;
 }
 
 .text-wrapper .small{
     font-size: 0.8em;
     color: var(--text-quaternary);
+    margin: -0.7em;
 }
 
 section .summary {
@@ -169,7 +185,6 @@ button {
     padding: 1.2em 0;
     border-radius: 26px;
     margin-top: 2em;
-    font-size: 1.1em;
 }
 
 button:hover, button:focus {
@@ -183,16 +198,16 @@ button:hover, button:focus {
 
 .summary {
     justify-content: space-between;
-    padding: 1em 0.8em;
+    padding: 0.8em;
     border-radius: 8px;
 }
 
 .summary-content {
-    gap: 1em;
+    gap: 0.5em;
 }
 
 span {
-    font-weight: bold;
+    font-weight: 600;
 }
 
 #reaction > .summary-content > p{
@@ -233,4 +248,32 @@ span {
 
 .summary p span {
     color: var(--text-main);
+}
+
+@media (max-width: 520px) {
+    main {
+        grid-template-columns: 1fr;
+        border-radius: 0;
+        max-width: 19em;
+    }
+    .left {
+        border-radius: 0 0 26px 26px;
+        padding: 1em 3em 2.2em;
+    }
+    .circle {
+        height: 8em;
+        width: 8em;
+    }
+    .summary {
+        margin: 0.2em 0;
+    }
+    button {
+        margin: 1em 0;
+    }
+    .right {
+        padding: 1.4em 1.8em;
+    }
+    .text-wrapper .large {
+        margin-bottom: 0.8em;
+    }
 }
