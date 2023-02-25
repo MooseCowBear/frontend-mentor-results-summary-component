@@ -56,19 +56,22 @@ const data = [ //temp, will read from file later....
 console.log(data);
 console.log(Array.isArray(data));
 
+const colors = [
+    {font: "hsl(0, 100%, 67%)", background: "hsla(0, 100%, 67%, 5%)"}, 
+    {font: "hsl(39, 100%, 56%)", background: "hsla(39, 100%, 56%, 5%)"}, 
+    {font: "hsl(166, 100%, 37%)", background: "hsla(166, 100%, 37%, 5%)"}, 
+    {font: "hsl(234, 85%, 45%)", background: "hsla(234, 85%, 45%, 5%)"}
+    ];
+
 const scores = [];
 const summarySection = document.getElementById("right");
 
 for (const index in data) {
-    console.log("category", data[index].category);
-
     scores.push(data[index].score); //for calculating cumulative score and displaying 
-
     const newSection = document.createElement("section");
 
     newSection.setAttribute("class", "summary");
-    console.log("should be lowercase", data[index].category.toLowerCase()); 
-    newSection.setAttribute("id", data[index].category.toLowerCase()); 
+    newSection.style.backgroundColor = colors[index % colors.length].background;
 
     //the first child of the new section, who exists for styling purposes
     const newSectionChildDiv = document.createElement("div");
@@ -81,6 +84,7 @@ for (const index in data) {
 
     const divDescription = document.createElement("p"); 
     divDescription.innerHTML = data[index].category;
+    divDescription.style.color = colors[index % colors.length].font;
 
     newSectionChildDiv.appendChild(divImage); 
     newSectionChildDiv.appendChild(divDescription); 

@@ -4,11 +4,6 @@
 }
 
 :root {
-    --primary-one: hsl(0, 100%, 67%); 
-    --primary-two: hsl(39, 100%, 56%);
-    --primary-three: hsl(166, 100%, 37%);
-    --primary-four: hsl(234, 85%, 45%);
-
     --background-gradient-one: hsl(252, 100%, 67%);
     --background-gradient-two: hsl(241, 81%, 54%);
 
@@ -214,38 +209,6 @@ button:hover, button:focus {
 
 span {
     font-weight: 600;
-}
-
-#reaction > .summary-content > p{
-    color: var(--primary-one);
-}
-
-#reaction {
-    background-color: hsla(0, 100%, 67%, 5%); 
-}
-
-#memory > .summary-content > p {
-    color: var(--primary-two);
-}
-
-#memory {
-    background-color: hsla(39, 100%, 56%, 5%);
-}
-
-#verbal > .summary-content > p {
-    color: var(--primary-three);
-}
-
-#verbal {
-    background-color: hsla(166, 100%, 37%, 5%);
-}
-
-#visual > .summary-content > p {
-    color: var(--primary-four);
-}
-
-#visual {
-    background-color: hsla(234, 85%, 45%, 5%);
 }
 
 .summary p {
