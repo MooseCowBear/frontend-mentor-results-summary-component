@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
-  <script src="data.json"></script>
+  <!-- <script src="data.json"></script> -->
   <title>Frontend Mentor | Results summary component</title>
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
@@ -28,14 +28,17 @@
         <p class="small">You scored higher than 65% of the people who have taken these tests.</p>
       </div>
     </section>
-    <section class="right">
+    <div class = "right-container">
+
+    <section id = "right" class="right">
       <h1>Summary</h1> <!-- should this be the h1? -->
-      <section id="reaction" class="summary">
+
+      <!-- <section id="reaction" class="summary">
         <div class="summary-content">
           <img src="./assets/images/icon-reaction.svg" alt="lightning bolt icon">
           <p>Reaction</p>
         </div>
-        <p><span>80</span> / 100</p>
+        <p><span>80</span> / 100</p> 
       </section>
       <section id="memory" class="summary">
         <div class="summary-content">
@@ -57,9 +60,12 @@
           <p>Visual</p>
         </div>
         <p><span>72</span> / 100</p>
-      </section>
-      <button>Continue</button>
+      </section> -->
+
     </section>
+
+      <button>Continue</button>
+    </div>
   </main>
   <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
