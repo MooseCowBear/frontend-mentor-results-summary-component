@@ -56,40 +56,64 @@ const data = [ //temp, will read from file later....
 console.log(data);
 console.log(Array.isArray(data));
 
+const scores = [];
 const summarySection = document.getElementById("right");
 
 for (const index in data) {
     console.log("category", data[index].category);
+
+    scores.push(data[index].score); //for calculating cumulative score and displaying 
+
     const newSection = document.createElement("section");
 
     newSection.setAttribute("class", "summary");
-    console.log("should be lowercase", data[index].category.toLowerCase()); //undefined...
+    console.log("should be lowercase", data[index].category.toLowerCase()); 
     newSection.setAttribute("id", data[index].category.toLowerCase()); 
 
+    //the first child of the new section, who exists for styling purposes
     const newSectionChildDiv = document.createElement("div");
-    newSectionChildDiv.setAttribute("class", "summary-content");
+    newSectionChildDiv.setAttribute("class", "summary-content"); 
 
-    const divImage = document.createElement("img");
+    //which, has its own two children
+    const divImage = document.createElement("img"); 
     divImage.setAttribute("src", data[index].icon);
     divImage.setAttribute("alt", `$(data[index].category) icon`);
 
-    const divParagraph = document.createElement("p");
-    divParagraph.innerHTML = data[index].category;
+    const divDescription = document.createElement("p"); 
+    divDescription.innerHTML = data[index].category;
 
-    newSectionChildDiv.appendChild(divImage);
-    newSectionChildDiv.appendChild(divParagraph);
+    newSectionChildDiv.appendChild(divImage); 
+    newSectionChildDiv.appendChild(divDescription); 
 
+    //the second child of new section
+    const scoreReport = document.createElement("p"); 
+
+    //who has one child
+    const scoreSpan = document.createElement("span");
+    scoreSpan.innerHTML = data[index].score;
+
+    scoreReport.appendChild(scoreSpan);
+    scoreReport.innerHTML += " / 100";
+
+    //attach section's children
     newSection.appendChild(newSectionChildDiv);
+    newSection.appendChild(scoreReport);
 
-    const newSectionParagraph = document.createElement("p");
+    //attach the newly created section
+    summarySection.appendChild(newSection); 
+}
 
-    const paragraphSpan = document.createElement("span");
-    paragraphSpan.innerHTML = data[index].score;
+/* also need the "score" in the circle div to be calculated. */
 
-    newSectionParagraph.appendChild(paragraphSpan);
-    newSectionParagraph.innerHTML += " / 100";
+console.log("scores", scores);
 
-    newSection.appendChild(newSectionParagraph);
+const totalScore = calculateTotalScore(scores);
+const totalScoreReport = document.getElementById("total-score");
+totalScoreReport.innerHTML = totalScore;
 
-    summarySection.appendChild(newSection);
+function calculateTotalScore(scores) {
+    const numScores = scores.length;
+    const sum = scores.reduce((a, b) => a + b, 0); 
+
+    return Math.round(sum/numScores);
 }
