@@ -172,12 +172,30 @@ h1, h2 {
     margin: -0.7em;
 }
 
-section .summary {
+section .summary, .summary, .summary-content {
     display: flex;
 }
 
 section p {
     color: var(--text-main);
+}
+
+.summary {
+    justify-content: space-between;
+    padding: 0.8em;
+    border-radius: 8px;
+}
+
+.summary-content {
+    gap: 0.5em;
+}
+
+.summary p:not(span) {
+    color: hsla(224, 30%, 27%, 70%);
+}
+
+.summary p span {
+    font-weight: 600;
 }
 
 button {
@@ -191,32 +209,6 @@ button {
 button:hover, button:focus {
     background: linear-gradient(var(--background-gradient-one), var(--background-gradient-two));
     cursor: pointer;
-}
-
-.summary, .summary-content {
-    display: flex;
-}
-
-.summary {
-    justify-content: space-between;
-    padding: 0.8em;
-    border-radius: 8px;
-}
-
-.summary-content {
-    gap: 0.5em;
-}
-
-span {
-    font-weight: 600;
-}
-
-.summary p {
-    color: hsla(224, 30%, 27%, 70%);
-}
-
-.summary p span {
-    color: var(--text-main);
 }
 
 @media (max-width: 520px) {
