@@ -10,10 +10,10 @@
     --circle-gradient-one: hsla(256, 72%, 46%, 1);
     --circle-gradient-two: hsla(241, 72%, 46%, 0);
 
-    --text-main: hsl(224, 30%, 27%);
-    --text-secondary: hsl(0, 0%, 100%);
-    --text-tertiary: hsl(221, 100%, 96%);
-    --text-quaternary: hsl(241, 100%, 89%);
+    --neutral-dark: hsl(224, 30%, 27%);
+    --neutral-light-one: hsl(0, 0%, 100%);
+    --neutral-light-two: hsl(221, 100%, 96%);
+    --neutral-light-three: hsl(241, 100%, 89%);
 }
 
 /* reset */
@@ -76,8 +76,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--text-secondary);
-    color: var(--text-main);
+    background-color: var(--neutral-light-one);
+    color: var(--neutral-dark);
     font-size: 18px;
     font-weight: 500;
 }
@@ -91,29 +91,17 @@ main {
     overflow: hidden;
 }
 
-h2, .circle .small {
-    color: var(--text-quaternary);
-}
-
-h1, h2 {
-    font-size: 1.1em;
-    font-weight: 500;
-}
-
-.circle .small {
-    font-weight: 500;
-}
-
-.circle .small {
-    font-size: 0.7em;
-    opacity: 0.8;
-}
-
 .right, .left, .right-container {
     display: flex;
     flex-direction: column;
 }
 
+.right-container {
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 1.8em 2em;
+    background-color: var(--neutral-light-one);
+}
 
 .right {
     align-items: stretch;
@@ -124,12 +112,6 @@ h1, h2 {
     font-size: 0.8em;
 }
 
-.right-container {
-    align-items: stretch;
-    justify-content: space-between;
-    padding: 1.8em 2em;
-}
-
 .left {
     align-items: center;
     background: linear-gradient(var(--background-gradient-one), var(--background-gradient-two));
@@ -137,6 +119,24 @@ h1, h2 {
     border-radius: inherit;
     gap: 1.2em;
     padding: 1.8em 2.8em;
+}
+
+h1, h2 {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+h2, .circle .small {
+    color: var(--neutral-light-three);
+}
+
+.circle .small {
+    font-weight: 500;
+}
+
+.circle .small {
+    font-size: 0.7em;
+    opacity: 0.8;
 }
 
 .circle {
@@ -157,7 +157,7 @@ h1, h2 {
 }
 
 .large, button {
-    color: var(--text-secondary);
+    color: var(--neutral-light-one);
 }
 
 .text-wrapper .large {
@@ -168,7 +168,7 @@ h1, h2 {
 
 .text-wrapper .small{
     font-size: 0.8em;
-    color: var(--text-quaternary);
+    color: var(--neutral-light-three);
     margin: -0.7em;
 }
 
@@ -177,7 +177,7 @@ section .summary, .summary, .summary-content {
 }
 
 section p {
-    color: var(--text-main);
+    color: var(--neutral-dark);
 }
 
 .summary {
@@ -199,14 +199,14 @@ section p {
 }
 
 button {
-    background-color: var(--text-main);
+    background-color: var(--neutral-dark);
     border: none;
     padding: 1.2em 0;
     border-radius: 26px;
     margin-top: 2em;
 }
 
-button:hover, button:focus {
+button:hover, button:focus-within {
     background: linear-gradient(var(--background-gradient-one), var(--background-gradient-two));
     cursor: pointer;
 }
