@@ -20,8 +20,8 @@ In this challenge we were given the option of dynamically adding data from a JSO
 
 ## Links
 
-- [Solution]()
-- [Live]()
+- [Solution](https://github.com/MooseCowBear/frontend-mentor-results-summary-component)
+- [Live](https://moosecowbear.github.io/frontend-mentor-results-summary-component/)
 
 ## Built with
 
@@ -32,7 +32,7 @@ In this challenge we were given the option of dynamically adding data from a JSO
 
 ## Useful Resources
 
-[This Stack Overflow for reading a JSON file]([This Stack Overflow)
+[This Stack Overflow for reading a JSON file](https://stackoverflow.com/questions/63565509/vanilla-javascript-how-to-read-local-json-file)
 
 ## Author
 
