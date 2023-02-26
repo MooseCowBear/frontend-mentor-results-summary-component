@@ -79,7 +79,6 @@ body {
     background-color: var(--neutral-light-one);
     color: var(--neutral-dark);
     font-size: 18px;
-    font-weight: 500;
 }
 
 main {
@@ -190,12 +189,14 @@ section p {
     gap: 0.5em;
 }
 
-.summary p:not(span) {
+.summary-content p {
     color: hsla(224, 30%, 27%, 70%);
+    font-weight: 500;
 }
 
-.summary p span {
-    font-weight: 600;
+span {
+    color: var(--neutral-dark);
+    font-weight: 700;
 }
 
 button {

@@ -67,10 +67,10 @@ function createDescription(parent, index, data) {
 function createScoreReport(parent, index, data) {
     const scoreReport = document.createElement("p"); 
     const scoreSpan = document.createElement("span");
-    scoreSpan.innerHTML = data[index].score;
+    scoreSpan.innerText = data[index].score;
 
     scoreReport.appendChild(scoreSpan);
-    scoreReport.innerText += " / 100";
+    scoreReport.insertAdjacentText("beforeend", " / 100");
 
     parent.appendChild(scoreReport);
 }
