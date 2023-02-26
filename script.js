@@ -16,22 +16,22 @@ console.log(data); */
 const data = [ //temp, will read from file later....
     {
       category: "Reaction",
-      score: 80,
+      "score": 80,
       icon: "./assets/images/icon-reaction.svg"
     },
     {
       category: "Memory",
-      score: 92,
+      "score": 92,
       icon: "./assets/images/icon-memory.svg"
     },
     {
       category: "Verbal",
-      score: 61,
+      "score": 61,
       icon: "./assets/images/icon-verbal.svg"
     },
     {
       category: "Visual",
-      score: 72,
+      "score": 72,
       icon: "./assets/images/icon-visual.svg"
     }
   ];
@@ -67,50 +67,59 @@ const scores = [];
 const summarySection = document.getElementById("right");
 
 for (const index in data) {
-    scores.push(data[index].score); //for calculating cumulative score and displaying 
-    const newSection = document.createElement("section");
+    scores.push(data[index].score); //for calculating cumulative score below
+    createNewSection(summarySection, index);
+}
 
+function createNewSection(parent, index) {
+    const newSection = document.createElement("section");
     newSection.setAttribute("class", "summary");
     newSection.style.backgroundColor = colors[index % colors.length].background;
 
-    //the first child of the new section, who exists for styling purposes
+    createInnerSectionDiv(newSection, index);
+    createScoreReport(newSection, index);
+
+    parent.appendChild(newSection);
+}
+
+function createInnerSectionDiv(parent, index) {
     const newSectionChildDiv = document.createElement("div");
     newSectionChildDiv.setAttribute("class", "summary-content"); 
 
-    //which, has its own two children
+    createDivImage(newSectionChildDiv, index);
+    createDescription(newSectionChildDiv, index);
+
+    parent.appendChild(newSectionChildDiv);
+}
+
+function createDivImage(parent, index) {
     const divImage = document.createElement("img"); 
-    divImage.setAttribute("src", data[index].icon);
+    divImage.setAttribute("src", data[index].icon); // will index be accessible, like data?
     divImage.setAttribute("alt", `$(data[index].category) icon`);
 
+    parent.appendChild(divImage); 
+}
+
+function createDescription(parent, index) {
     const divDescription = document.createElement("p"); 
     divDescription.innerHTML = data[index].category;
     divDescription.style.color = colors[index % colors.length].font;
 
-    newSectionChildDiv.appendChild(divImage); 
-    newSectionChildDiv.appendChild(divDescription); 
+    parent.appendChild(divDescription); 
+}
 
-    //the second child of new section
+function createScoreReport(parent, index) {
     const scoreReport = document.createElement("p"); 
-
-    //who has one child
     const scoreSpan = document.createElement("span");
     scoreSpan.innerHTML = data[index].score;
 
     scoreReport.appendChild(scoreSpan);
     scoreReport.innerHTML += " / 100";
 
-    //attach section's children
-    newSection.appendChild(newSectionChildDiv);
-    newSection.appendChild(scoreReport);
-
-    //attach the newly created section
-    summarySection.appendChild(newSection); 
+    parent.appendChild(scoreReport);
 }
 
 /* also need the "score" in the circle div to be calculated. */
-
-console.log("scores", scores);
-
 const totalScore = calculateTotalScore(scores);
 const totalScoreReport = document.getElementById("total-score");
 totalScoreReport.innerHTML = totalScore;
