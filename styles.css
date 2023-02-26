@@ -238,3 +238,7 @@ button:hover, button:focus-within {
         margin-bottom: 0.8em;
     }
 }
+
+#error {
+    font-size: 1em;
+}

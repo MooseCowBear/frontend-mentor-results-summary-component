@@ -1,60 +1,7 @@
-/*const url = "./data.json";
-
-const fetchJson = async () => {
-    try {
-      const data = await fetch(url);
-      const response = await data.json();  
-      console.log("try executed");
-    } catch (error) {
-      console.log(error);
-    }
-}; 
-
-const data = fetchJson();
-console.log(data); */ 
-
-const data = [ //temp, will read from file later....
-    {
-      category: "Reaction",
-      "score": 80,
-      icon: "./assets/images/icon-reaction.svg"
-    },
-    {
-      category: "Memory",
-      "score": 92,
-      icon: "./assets/images/icon-memory.svg"
-    },
-    {
-      category: "Verbal",
-      "score": 61,
-      icon: "./assets/images/icon-verbal.svg"
-    },
-    {
-      category: "Visual",
-      "score": 72,
-      icon: "./assets/images/icon-visual.svg"
-    }
-  ];
-
-  /* plan: id= "right" is what we will attach children to. loop the array of data from json.
-    (believe the children should attach in order, so div first, p second)
-
-    create: 1. section with class = "summary" id = arr[index].category.toLowerCase(). 
-
-    2. section has two children a. a div with class = "summary-content", and b. a <p> (WILL NEED ID?). 
-
-    3. div has two children: IMG (img src = arr[index].icon, alt = arr[index].category + "icon" ) and P. 
-    (P = arr[index].category)
-
-    4. <p> (b. above) has a span child, whose innerHTML = arr[index].score. 
-    (so, <p> should be add span with text as child of <p>)
-    (then <p>'s innerHTML += "  / 100") -- will need to test that this works as intended...
-  */
-
-    /* but want to do it above the button, so move button out of section - update syling to reflect */ 
-
-console.log(data);
-console.log(Array.isArray(data));
+fetch('https://raw.githubusercontent.com/MooseCowBear/frontend-mentor-results-summary-component/main/data.json')
+  .then(response => response.json())
+  .then(data => displayData(data))
+  .catch(error => displayError(error));
 
 const colors = [
     {font: "hsl(0, 100%, 67%)", background: "hsla(0, 100%, 67%, 5%)"}, 
@@ -63,44 +10,53 @@ const colors = [
     {font: "hsl(234, 85%, 45%)", background: "hsla(234, 85%, 45%, 5%)"}
     ];
 
-const scores = [];
-const summarySection = document.getElementById("right");
 
-for (const index in data) {
-    scores.push(data[index].score); //for calculating cumulative score below
-    createNewSection(summarySection, index);
+function displayData(data) {
+    console.log(data);
+
+    const scores = [];
+    const summarySection = document.getElementById("right");
+
+    for (const index in data) {
+        scores.push(data[index].score); 
+        createNewSection(summarySection, index, data);
+    }
+
+    const totalScore = calculateTotalScore(scores);
+    const totalScoreReport = document.getElementById("total-score");
+    totalScoreReport.innerHTML = totalScore;
 }
 
-function createNewSection(parent, index) {
+function createNewSection(parent, index, data) {
     const newSection = document.createElement("section");
     newSection.setAttribute("class", "summary");
     newSection.style.backgroundColor = colors[index % colors.length].background;
 
-    createInnerSectionDiv(newSection, index);
-    createScoreReport(newSection, index);
+    createInnerSectionDiv(newSection, index, data);
+    createScoreReport(newSection, index, data);
 
     parent.appendChild(newSection);
 }
 
-function createInnerSectionDiv(parent, index) {
+function createInnerSectionDiv(parent, index, data) {
     const newSectionChildDiv = document.createElement("div");
     newSectionChildDiv.setAttribute("class", "summary-content"); 
 
-    createDivImage(newSectionChildDiv, index);
-    createDescription(newSectionChildDiv, index);
+    createDivImage(newSectionChildDiv, index, data);
+    createDescription(newSectionChildDiv, index, data);
 
     parent.appendChild(newSectionChildDiv);
 }
 
-function createDivImage(parent, index) {
+function createDivImage(parent, index, data) {
     const divImage = document.createElement("img"); 
-    divImage.setAttribute("src", data[index].icon); // will index be accessible, like data?
+    divImage.setAttribute("src", data[index].icon); 
     divImage.setAttribute("alt", `$(data[index].category) icon`);
 
     parent.appendChild(divImage); 
 }
 
-function createDescription(parent, index) {
+function createDescription(parent, index, data) {
     const divDescription = document.createElement("p"); 
     divDescription.innerHTML = data[index].category;
     divDescription.style.color = colors[index % colors.length].font;
@@ -108,25 +64,30 @@ function createDescription(parent, index) {
     parent.appendChild(divDescription); 
 }
 
-function createScoreReport(parent, index) {
+function createScoreReport(parent, index, data) {
     const scoreReport = document.createElement("p"); 
     const scoreSpan = document.createElement("span");
     scoreSpan.innerHTML = data[index].score;
 
     scoreReport.appendChild(scoreSpan);
-    scoreReport.innerHTML += " / 100";
+    scoreReport.innerText += " / 100";
 
     parent.appendChild(scoreReport);
 }
-
-/* also need the "score" in the circle div to be calculated. */
-const totalScore = calculateTotalScore(scores);
-const totalScoreReport = document.getElementById("total-score");
-totalScoreReport.innerHTML = totalScore;
 
 function calculateTotalScore(scores) {
     const numScores = scores.length;
     const sum = scores.reduce((a, b) => a + b, 0); 
 
     return Math.round(sum/numScores);
+}
+
+//in case the data doesn't load for some reason, give a visual alert to user
+function displayError(error) {
+    console.log(error);
+    const summarySection = document.getElementById("right");
+    const errorMessage = document.createElement("p");
+    errorMessage.setAttribute("id", "error");
+    errorMessage.innerText = "Oh no! Something went wrong.";
+    summarySection.appendChild(errorMessage);
 }
